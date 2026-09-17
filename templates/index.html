@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soggy Bread</title>
+
 </head>
 <body>
+    <nav>
+        <a href="{{ url_for('search') }}">search</a>
+        <a href="{{ url_for('bread') }}">bread</a>
+    </nav>
     <header>
         <h1>Soggy Bread</h1>
     </header>
@@ -29,6 +34,7 @@
             </figure>
         </section>
     </main>
+    <h2>{{shop}}</h2>
     <aside>
         <h2>Sidebar</h2>
         <p>Links / ads.</p>
