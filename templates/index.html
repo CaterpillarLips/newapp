@@ -1,46 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soggy Bread</title>
+{% extends "base.html" %}
 
-</head>
-<body>
-    <nav>
-        <a href="{{ url_for('search') }}">search</a>
-        <a href="{{ url_for('bread') }}">bread</a>
-    </nav>
+{% block title %}Soggy Bread{% endblock %}
+
+{% block content %}
     <header>
         <h1>Soggy Bread</h1>
     </header>
-    <nav>
+
+    <section>
+        <article>Soggy Bread</article>
+        <p>This restaurant offers world class bread topped with as much water and sugar as you like.</p>
+        <p>Come try out our soggy bread</p>
+        <h2>Our menu</h2>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li>Bread</li>
+            <li>Water</li>
+            <li>Sugar</li>
         </ul>
-    </nav>
-    <main>
-        <section>
-            <article>Soggy Bread</article>
-            <p>This restaurant offers world class bread topped with as much water and sugar as you like.</p>
-            <p>Come try out our soggy bread</p>
-            <h2>Our menu</h2>
-            <ul>Bread, Water, Sugar</ul>
-            <figure>
-                <img src="https://pastrychefonline.com/wp-content/uploads/2015/01/white-bread-and-sugar.jpg">
-                <figcaption>One of our best recipes: bread with 1ml of water and a handful of sugar.</figcaption>
-            </figure>
-        </section>
-    </main>
-    <h2>{{shop}}</h2>
+        <figure>
+            <img src="https://pastrychefonline.com/wp-content/uploads/2015/01/white-bread-and-sugar.jpg" alt="Soggy bread recipe">
+            <figcaption>One of our best recipes: bread with 1ml of water and a handful of sugar.</figcaption>
+        </figure>
+    </section>
+
+    <h2>{{ shop }}</h2>
+
     <aside>
         <h2>Sidebar</h2>
         <p>Links / ads.</p>
     </aside>
-
-    <footer>
-    </footer>
-</body>
-</html>
+{% endblock %}

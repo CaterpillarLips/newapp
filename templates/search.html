@@ -1,47 +1,28 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
+{% block title %}Album Search{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album Search</title>
+{% block content %}
+    <h1>Album Search</h1>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <form action="{{ url_for('search') }}" method="GET">
+        <input
+            type="text"
+            name="q"
+            placeholder="Search here..."
+            value="{{ query }}"
+        >
 
+        <button type="submit">Search</button>
+    </form>
 
-</head>
-
-<body>
-    <nav>
-        <a href="{{ url_for('search') }}">search</a>
-        <a href="{{ url_for('bread') }}">bread</a>
-    </nav>
-```
-<h1>Album Search</h1>
-
-<form action="{{ url_for('search') }}" method="GET">
-    <input
-        type="text"
-        name="q"
-        placeholder="Search here..."
-        value="{{ query }}"
-    >
-
-    <button type="submit">Search</button>
-</form>
-
-<ul>
-    {% if albums %}
-        {% for album in albums %}
-            <li>{{ album }}</li>
-        {% endfor %}
-    {% else %}
-        <p>No albums found.</p>
-    {% endif %}
-</ul>
-```
-
-</body>
-
-</html>
+    <ul>
+        {% if albums %}
+            {% for album in albums %}
+                <li>{{ album }}</li>
+            {% endfor %}
+        {% else %}
+            <p>No albums found.</p>
+        {% endif %}
+    </ul>
+{% endblock %}
