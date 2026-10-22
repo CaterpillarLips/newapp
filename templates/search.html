@@ -1,15 +1,22 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
+{% block title %}Album Search{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album Search</title>
+{% block content %}
+    <h1>Album Search</h1>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <form action="{{ url_for('search') }}" method="GET">
+        <input
+            type="text"
+            name="q"
+            placeholder="Search here..."
+            value="{{ query }}"
+        >
 
+        <button type="submit">Search</button>
+    </form>
 
+<<<<<<< HEAD
 </head>
 
 <body>
@@ -52,3 +59,15 @@
 </body>
 
 </html>
+=======
+    <ul>
+        {% if albums %}
+            {% for album in albums %}
+                <li>{{ album }}</li>
+            {% endfor %}
+        {% else %}
+            <p>No albums found.</p>
+        {% endif %}
+    </ul>
+{% endblock %}
+>>>>>>> 78a479aa8dafb6aa0c42cf2820bebd358aa07484
