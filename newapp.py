@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, flash, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = "change-me-to-anything"
@@ -7,9 +8,16 @@ users = {
     "staff": generate_password_hash("bookworm"),
 }
 
-@app.route("/")
-def shop():
-    return "Would you like to buy a watermelon?"
+@app.route("/", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        name = request.form["username"]
+        pw = request.form["password"]
+        if name in users and check_password_hash(users[name], pw):
+            session["user"] = name
+            return redirect(url_for("search"))
+        flash("Wrong username or password")
+    return render_template("login.html")
 
 @app.route("/flask")
 def flask():
@@ -26,8 +34,9 @@ def search():
     books = []
 
     if query:
-        all_albums = ["Abbey Road", "Dark Side of the Moon", "Thriller", "Back in Black"]
-        albums = [a for a in all_albums if query.lower() in a.lower()]
+        all_titles = ["How to win at chess", "Harry Potter", "Rich Dad Poor Dad", "Testing testing"]
+        all_authors = ["Levy Rozman", "J.K. Rowling", "Robert Kiyosaki"]
+        books = [a for a in all_titles if query.lower() in a.lower()]
     else:
         titles = ["How to win at chess", "Harry Potter", "Rich Dad Poor Dad"]
         authors = ["Levy Rozman", "J.K. Rowling", "Robert Kiyosaki"]
@@ -36,5 +45,3 @@ def search():
     return render_template("search.html", query=query, books=books)
 
 app.run(debug=True)
-
-save_books()
